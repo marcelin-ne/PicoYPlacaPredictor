@@ -25,5 +25,13 @@ class Rules:
             return self._rules
 
     def get_rule_for_weekday(self, weekday):
-            # Obtener la regla correspondiente para el día de la semana
+
         return self.rules.get(weekday)
+
+    def get_morning_interval(self):
+
+        return self.time_intervals.get('Morning')
+
+    def get_afternoon_interval(self):
+
+        return self.time_intervals.get('Afternoon')
