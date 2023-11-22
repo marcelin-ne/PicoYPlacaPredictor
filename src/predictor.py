@@ -1,4 +1,6 @@
 # Create a file named pico_y_placa.py
+from datetime import datetime
+
 
 class Predictor:
     def __init__(self, plate_number, date, time):
@@ -7,9 +9,10 @@ class Predictor:
         self.time = time
 
     def can_drive(self):
-        # Implement the logic to check if the car can be on the road
-        #Return a true o false value for the firts test
-        if self.date == "2023-11-21" and  "07:00" <= self.time <= "09:30" and self.plate_number == "ABC-123":
-                return True
+        last_digit = int(self.plate_number[-1])
+        weekday = datetime.strptime(self.date, "%Y-%m-%d").weekday()
+        #If the day of the week is Monday, Wednesday or Friday and the last digit of the plate is odd and the time is between 07:00 and 09:30
+        if weekday in [0, 2, 4] and last_digit % 2 != 0 and "07:00" <= self.time <= "09:30":
+            return True
         else:
             return False
