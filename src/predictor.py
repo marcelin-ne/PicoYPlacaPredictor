@@ -23,3 +23,5 @@ class Predictor:
 
     def get_last_digit(self):
         return int(self.plate_number[-1])
+    
+    
