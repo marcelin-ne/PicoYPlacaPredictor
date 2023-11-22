@@ -19,6 +19,11 @@ def test_can_drive():
     assert predictor_invalid.can_drive() is False
 
 def test_get_weekday():
-    # Escenario 1: Obtener el día de la semana para una fecha específica (lunes)
+    # Scenario 1: Get the weekday for a specific date (Monday)
     predictor = Predictor("ABC-123", "2023-11-20", "08:30")
     assert predictor.get_weekday() == 0  # 0 representa el lunes en la convención de Python
+
+def test_get_last_digit():
+    #scenario 1: Get the last digit of the plate
+    predictor = Predictor("ABC-123", "2023-11-20", "08:30")
+    assert predictor.get_last_digit() == 3
