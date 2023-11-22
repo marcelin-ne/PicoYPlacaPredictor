@@ -4,14 +4,33 @@ from date_manager import DateParser, HolidayChecker
 from rules import Rules
 
 class Predictor:
+    """Class for predicting if a car can drive based on Pico y Placa rules."""
 
     def __init__(self, plate_number, date, time):
+        """
+        Initialize the Predictor object.
+
+        Parameters:
+        - plate_number (str): The license plate number of the car.
+        - date (str): The date in the format 'YYYY-MM-DD'.
+        - time (str): The time in the format 'HH:MM'.
+        """
         self.plate_number = plate_number
         self.date = date
         self.time = time
 
 
     def _get_necessary_values(self, date, time):
+        """
+        Get necessary values for the prediction.
+
+        Parameters:
+        - date (str): The date in the format 'YYYY-MM-DD'.
+        - time (str): The time in the format 'HH:MM'.
+
+        Returns:
+        - dict: Dictionary containing necessary values for the prediction.
+        """
         date_parser = DateParser(date)
         holiday_checker = HolidayChecker()
 
@@ -35,6 +54,12 @@ class Predictor:
         }
 
     def can_drive(self):
+        """
+        Check if the car can drive based on Pico y Placa rules.
+
+        Returns:
+        - bool: True if the car can drive, False otherwise.
+        """
         # Get necessary values
         values = self._get_necessary_values(self.date, self.time)
 
@@ -49,8 +74,6 @@ class Predictor:
         # The car can drive if it is not in any of the restricted time intervals
         return not (is_morning or is_afternoon)
 
-    def get_weekday(self):
-        return datetime.strptime(self.date, "%Y-%m-%d").weekday()
 
     def get_last_digit(self):
         return int(self.plate_number[-1])

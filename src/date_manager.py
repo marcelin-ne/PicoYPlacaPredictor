@@ -1,11 +1,17 @@
 from datetime import datetime , date
-
-
 class DateParser:
+    """Class for parsing and retrieving information from date strings."""
+
     def __init__(self, date):
         self.date = date
 
     def get_weekday(self):
+        """
+        Get the weekday name for the specified date.
+
+        Returns:
+        - str: The weekday name (e.g., "Monday").
+        """
         try:
             # Try to convert the date string to a datetime object
             date_obj = datetime.strptime(self.date, "%Y-%m-%d")
@@ -16,8 +22,9 @@ class DateParser:
             return "Invalid Date"
 
 class HolidayChecker:
+    """Class for checking if a given date is a holiday."""
     def __init__(self):
-        # Diccionario de días festivos
+        #Dictionary of holidays
         self.holidays = {
             "NEW_YEAR": date(2023, 1, 2),
             "CARNAVAL_1": date(2023, 2, 20),
@@ -34,6 +41,15 @@ class HolidayChecker:
         }
 
     def is_holiday(self, date_to_check):
-        # Verificar si la fecha dada es un día festivo
+        """
+        Check if the given date is a holiday.
+
+        Parameters:
+        - date_to_check (str): The date to check in the format 'YYYY-MM-DD'.
+
+        Returns:
+        - bool: True if the date is a holiday, False otherwise.
+        """
+        #Verifty if the given date is a holiday
         return date_to_check in self.holidays.values()
 
