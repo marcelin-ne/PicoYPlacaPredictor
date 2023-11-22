@@ -10,14 +10,13 @@ from src.predictor import Predictor
 from src.predictor import Predictor
 
 def test_can_drive():
-    # Prueba para verificar que la lógica funciona correctamente
+    # Scenario 1: A car with a license plate that meets the restrictions
+    # Odd last digit, allowed day (Monday)
+    predictor_valid = Predictor("ABC-123", "2023-11-20", "08:30")
+    assert predictor_valid.can_drive() is True
 
-    # Escenario 1: Un automóvil con placa que cumple con las restricciones
-    predictor = Predictor("ABC-123", "2023-11-21", "08:30")
-    assert predictor.can_drive() is True
+    # Scenario 2: A car with a license plate that does not meet the restrictions
+    # Even last digit, not allowed day (Tuesday)
+    predictor_invalid = Predictor("XYZ-987", "2023-11-21", "08:30")
+    assert predictor_invalid.can_drive() is False
 
-    # Escenario 2: Un automóvil con placa que no cumple con las restricciones
-    predictor = Predictor("XYZ-987", "2023-11-21", "18:00")
-    assert predictor.can_drive() is False
-
-    # Agrega más escenarios de prueba según sea necesario
