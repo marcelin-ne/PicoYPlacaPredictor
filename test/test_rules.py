@@ -31,3 +31,33 @@ def test_get_rule_for_weekday():
     assert rules_instance.get_rule_for_weekday('Saturday') is None  # Regla es None
     assert rules_instance.get_rule_for_weekday('Morning') == {'start': time(7, 0), 'end': time(9, 30)}
     assert rules_instance.get_rule_for_weekday('Afternoon') == {'start': time(16, 0), 'end': time(19, 30)}
+
+def test_get_morning_interval():
+    # Definir algunas reglas para la prueba
+    test_rules = {
+        'Morning': {'start': time(7, 0), 'end': time(9, 30)},
+        # Otras reglas...
+    }
+
+    # Crear una instancia de Rules y establecer las reglas
+    rules_instance = Rules()
+    rules_instance.time_intervals = test_rules
+
+    # Probar obtener el intervalo de la mañana
+    morning_interval = rules_instance.get_morning_interval()
+    assert morning_interval == {'start': time(7, 0), 'end': time(9, 30)}
+
+def test_get_afternoon_interval():
+    # Definir algunas reglas para la prueba
+    test_rules = {
+        'Afternoon': {'start': time(16, 0), 'end': time(19, 30)},
+        # Otras reglas...
+    }
+
+    # Crear una instancia de Rules y establecer las reglas
+    rules_instance = Rules()
+    rules_instance.time_intervals = test_rules
+
+    # Probar obtener el intervalo de la tarde
+    afternoon_interval = rules_instance.get_afternoon_interval()
+    assert afternoon_interval == {'start': time(16, 0), 'end': time(19, 30)}
