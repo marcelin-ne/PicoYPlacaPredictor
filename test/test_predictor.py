@@ -7,8 +7,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from src.predictor import Predictor
 
 
-from src.predictor import Predictor
-
 def test_can_drive():
     # Scenario 1: A car with a license plate that meets the restrictions
     # Odd last digit, allowed day (Monday)
@@ -20,3 +18,7 @@ def test_can_drive():
     predictor_invalid = Predictor("XYZ-987", "2023-11-21", "08:30")
     assert predictor_invalid.can_drive() is False
 
+def test_get_weekday():
+    # Escenario 1: Obtener el día de la semana para una fecha específica (lunes)
+    predictor = Predictor("ABC-123", "2023-11-20", "08:30")
+    assert predictor.get_weekday() == 0  # 0 representa el lunes en la convención de Python
